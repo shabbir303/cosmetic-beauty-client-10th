@@ -45,8 +45,9 @@ const router = createBrowserRouter([
       loader: ()=>fetch('http://localhost:5000/beauties')
     },
     {
-      path:'/details',
-      element: <Details></Details>
+      path:'/details/:id',
+      element: <Details></Details>,
+      loader: ()=>fetch('http://localhost:5000/beauties')
     },
     {
       path:'/update',

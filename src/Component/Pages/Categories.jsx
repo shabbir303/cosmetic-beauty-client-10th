@@ -106,7 +106,9 @@ const Categories = () => {
                   {category.describe}
                 </p>
                 <div className="flex gap-4">
+                  <Link to={`/details/${category._id}`}>
                   <button className="  btn btn-outline btn-info" ><img src="https://i.ibb.co/1L5yx4h/details-removebg-preview.png" alt="" className="w-[80px] h-[20px]" /></button>
+                  </Link>
                   <Link to='/update'>
                   <button className="btn btn-outline  btn-success"><img src="https://i.ibb.co/QfLqNkx/update.png" alt="" 
                    className="w-[80px] h-[20px]"/> </button>
