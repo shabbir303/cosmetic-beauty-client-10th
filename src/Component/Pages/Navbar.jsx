@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import logo from '../../assets/logo.jpg'
 
 
 const Navbar = () => {
@@ -21,7 +22,7 @@ const Navbar = () => {
         };
       }}
     >Add-Product</NavLink></li>
-    <li className="text-[20px] font-[600] "><NavLink to='/add'
+    <li className="text-[20px] font-[600] "><NavLink to='/details'
       style={({ isActive,  }) => {
         return {
           fontWeight: isActive ? "bold" : "",
@@ -29,7 +30,7 @@ const Navbar = () => {
           background: isActive? "none": '',
         };
       }}
-    >Service</NavLink></li>
+    >Details</NavLink></li>
 
     <li className="text-[20px] font-[600] "><NavLink to='/sports'
       style={({ isActive }) => {
@@ -44,8 +45,8 @@ const Navbar = () => {
   </>
 
     return (
-        <div>
-            <div className="navbar bg-gradient-to-r from-amber-600 to-pink-500 text-white lg:pl-[500px] lg:pr-[200px] fixed top-0 opacity-70 z-10">
+        <div className="">
+            <div className="navbar px-[120px] bg-gradient-to-r from-[#1C0BB2] to-pink-500 text-white   fixed top-0 opacity-70 z-10">
               
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -56,18 +57,19 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <img src="https://i.ibb.co/y8JT37P/ede9e12f02ea32b3c13dc5d599204931-r.png" alt="" className="h-[100px] bg-[#2dba31] bg-opacity-[0.3] rounded-full" />
+                    <img src={logo} alt="" className="h-[100px] bg-[#2dba31] bg-opacity-[0.3] rounded-md" />
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navLinks}
                     </ul>
-                </div>
-                <Link to='/login'>
+                    <Link to='/login'>
                 <div className="navbar-end w-full ">
-                    <img className="btn bg-black rounded-full  hover:bg-blue-800 " src="https://i.ibb.co/QcMxGXs/login-logo.png" alt="" />
+                    <img className="btn bg-black h-[70px] w-[70px] rounded-full  hover:bg-blue-800 " src="https://i.ibb.co/QcMxGXs/login-logo.png" alt="" />
                 </div>
                 </Link>
+                </div>
+                
             </div>
         </div>
     );

@@ -1,10 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../../../AuthProvider/AuthProvider";
 
 
 const Login = () => {
-    const handleLogin = () => {
-        
+  const {login} = useContext(Authcontext)
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const handleLogin = (e) => {
+      e.preventDefault();
+      const userData = {
+        name, email, password
+      }
+      console.log(userData.name, userData.email, userData.password);
+      login(userData.name, userData.email)  
+      
     }
     return (
         <div className="bg-[url('https://i.ibb.co/qYhXVP1/bg.jpg')] bg-cover object-cover w-full h-screen">
@@ -23,6 +36,8 @@ const Login = () => {
     <input
       type="text"
       name='name'
+      value={name}
+      onChange={(e)=>setName(e.target.value)}
       required
       className=" h-full w-full  rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
     //   placeholder="Enter your name here "
@@ -35,6 +50,8 @@ const Login = () => {
     <input
     type="email"
     name='email'
+    value={email}
+    onChange={(e)=>setEmail(e.target.value)}
     // placeholder="Enter your email address"
     required
       className=" h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -48,6 +65,8 @@ const Login = () => {
     <input
       type="password"
       name='password'
+      value={password}
+      onChange={(e)=>setPassword(e.target.value)}
     //   placeholder="Enter your password"
       required
       className=" h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"

@@ -11,11 +11,17 @@ import Home from './Component/Pages/Home';
 import AddProduct from './Component/Pages/AddProduct';
 import Login from './Component/Pages/Login & Register/Login';
 import Register from './Component/Pages/Login & Register/Register';
+import AuthProvider from './AuthProvider/AuthProvider';
+import Categories from './Component/Pages/Categories';
+import Details from './Component/Pages/Details';
+import UpdateProduct from './Component/Pages/UpdateProduct';
+import Error from './Component/Pages/Error';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:<Root></Root>,
+    errorElement: <Error></Error>,
     children:[
      {
        path:'/',
@@ -32,12 +38,27 @@ const router = createBrowserRouter([
     {
       path: '/register',
       element: <Register></Register>
+    },
+    {
+      path:'/type/:brand',
+      element: <Categories></Categories>,
+      loader: ()=>fetch('http://localhost:5000/beauties')
+    },
+    {
+      path:'/details',
+      element: <Details></Details>
+    },
+    {
+      path:'/update',
+      element: <UpdateProduct></UpdateProduct>
     }
     ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+     <AuthProvider>
+      <RouterProvider router={router} />
+     </AuthProvider>
   </React.StrictMode>,
 )

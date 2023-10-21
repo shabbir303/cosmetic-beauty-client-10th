@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Swal from "sweetalert2";
 
 
-const AddProduct = () => {
+const UpdateProduct = () => {
+
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
@@ -21,7 +21,7 @@ const AddProduct = () => {
         setRating("");
     };
 
-    const handleUser = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
         const product = {
             image,
@@ -32,35 +32,13 @@ const AddProduct = () => {
             describe,
             rating
         }
-        
-        fetch('http://localhost:5000/beauties',{
-        method: 'POST',
-        headers:{
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(product),
-    })
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data);
-          if(data?.acknowledged === true)
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Great',
-                    text: 'Product added successfully',
-                    
-                  })
-              reset();            
-            }
-        })
     }
     return (
-
-        <div className=" h-screen bg-[url('https://i.ibb.co/RCnhxKR/441192-gorod-plitka-1680x1050-www-Gde-Fon-com-jpg.jpg')] bg-cover object-cover w-full  ">
+        <div>
+            <div className=" h-screen bg-[url('https://i.ibb.co/Yj3sjxv/update.jpg')] bg-cover object-cover w-full  ">
             <div className="pt-[170px] flex w-[90%] justify-center items-center mx-auto gap-[50px] ">
-                <img src="https://i.ibb.co/yFwBb7m/text.png" alt="" className="" />
-                <form onSubmit={handleUser}
+                <img src="https://i.ibb.co/RQTcS5G/up-removebg-preview.png" alt="" className="" />
+                <form onSubmit={handleUpdate}
                     className="bg-[#2d8dba] bg-opacity-30  rounded-2xl shadow-2xl shadow-cyan/80  w-[800px] flex flex-col justify-center items-center mx-auto py-[50px]  ">
                     <div className="w-[500px] flex flex-col gap-[30px]">
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -175,7 +153,8 @@ const AddProduct = () => {
             </div>
 
         </div>
+        </div>
     );
 };
 
-export default AddProduct;
+export default UpdateProduct;
