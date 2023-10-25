@@ -1,8 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/logo.jpg'
+import { useContext } from "react";
+import { Authcontext } from "./AuthProvider/AuthProvider";
 
 
 const Navbar = () => {
+  const {user, UserSignOut} = useContext(Authcontext);
+
+  const handleLogOut =()=>{
+     
+    UserSignOut()
+    .then(console.log('signOut successfully'))
+    .catch(error=>console.log(error))
+  } 
+
     const navLinks = <>
     <li className="text-[20px] font-[600] " ><NavLink to ='/'
       style={({ isActive,  }) => {
@@ -59,14 +70,29 @@ const Navbar = () => {
                     </div>
                     <img src={logo} alt="" className="h-[100px] bg-[#2dba31] bg-opacity-[0.3] rounded-md" />
                 </div>
-                <div className="navbar-end hidden lg:flex">
+                <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navLinks}
                     </ul>
-                    <Link to='/login'>
+                    {
+                      user? <>
+                          <div className="flex flex-col lg:flex-col items-center justify-center gap-[0] lg:gap-[10px]">
+      <h1>{user.displayName}</h1>
+      <img  src={user.photoURL} alt="" className="w-[30px] lg:w-[50px] h-[30px] lg:h-[50px] rounded-full " />
+      </div>
+       <button onClick={handleLogOut} className="font-[500] bg-gradient-to-r from-slate-900 to-slate-700 py-[4px] rounded-md shadow-xl shadow-green-500/50 px-[10px]">Logout</button>
+                      </>
+                      : <Link to='/login'>
                 <div className="navbar-end w-full ">
-                    <img className="btn bg-black h-[70px] w-[70px] rounded-full  hover:bg-blue-800 " src="https://i.ibb.co/QcMxGXs/login-logo.png" alt="" />
+                    <img className="  h-[70px] w-[70px]    " src="https://i.ibb.co/LNKvG4S/login-removebg-preview.png" alt="" />
                 </div>
+                </Link>
+                    }
+
+                <Link to='/cart'>
+                    <div>
+                      <img src="https://i.ibb.co/TcXn67J/cart-removebg-preview-1.png" alt="" className="h-[70px] w-[70px] ml-[20px]"/>
+                    </div>
                 </Link>
                 </div>
                 

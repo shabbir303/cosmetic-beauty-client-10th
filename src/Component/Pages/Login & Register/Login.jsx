@@ -1,24 +1,89 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { Authcontext } from "../../../AuthProvider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Authcontext } from "../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
-  const {login} = useContext(Authcontext)
+  const {login, googleLogin} = useContext(Authcontext)
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginSuccess, setLoginSuccess] = useState('');
+    const [loginFailure, setLoginFailure] = useState('');
+
+    const reset=()=>{
+       setName('');
+       setEmail("");
+       setPassword("");
+
+      
+
+    }
+
+    const location = useLocation();
+    console.log(location);
+    const navigate = useNavigate();
     
+
     const handleLogin = (e) => {
       e.preventDefault();
       const userData = {
         name, email, password
       }
       console.log(userData.name, userData.email, userData.password);
-      login(userData.name, userData.email)  
-      
+      login( userData.email, userData.password )
+      .then(result =>{
+        console.log(result.user);
+        setLoginSuccess(result.user)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Success',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        navigate(location?.state? location.state:'/')
+        reset();
+      })
+      .catch(err=>{
+        console.log(err);
+        setLoginFailure(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${err.message}`,
+          
+        })
+        reset();
+      })
     }
+   const handleGoogleLogin = ()=>{
+     googleLogin()
+     .then(result=>{
+       navigate('/')
+       console.log(result.user);
+       Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Login Success',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+     .catch(err=>{
+      console.log(err.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${err.message}`,
+        
+      })
+    })
+    
+  }
     return (
         <div className="bg-[url('https://i.ibb.co/qYhXVP1/bg.jpg')] bg-cover object-cover w-full h-screen">
         
@@ -99,7 +164,7 @@ const Login = () => {
   </Link>
 </p>
 
-<btn  className="btn btn-outline btn-success mt-[15px] gap-2 flex items-center mb-4">Also Logged on <img src="https://i.ibb.co/Pr9wM4m/google.png" alt="" className="w-[50px] h-[30px] " /></btn>
+<btn onClick={handleGoogleLogin} className="btn btn-outline btn-success mt-[15px] gap-2 flex items-center mb-4">Also Logged on <img src="https://i.ibb.co/Pr9wM4m/google.png" alt="" className="w-[50px] h-[30px] " /></btn>
 </form>
 
 </div>

@@ -11,11 +11,12 @@ import Home from './Component/Pages/Home';
 import AddProduct from './Component/Pages/AddProduct';
 import Login from './Component/Pages/Login & Register/Login';
 import Register from './Component/Pages/Login & Register/Register';
-import AuthProvider from './AuthProvider/AuthProvider';
+import AuthProvider from './Component/Pages/AuthProvider/AuthProvider';
 import Categories from './Component/Pages/Categories';
 import Details from './Component/Pages/Details';
 import UpdateProduct from './Component/Pages/UpdateProduct';
 import Error from './Component/Pages/Error';
+import Cart from './Component/Pages/Cart';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
     {
       path:'/update',
       element: <UpdateProduct></UpdateProduct>
+    },
+    {
+      path:'/cart/:id',
+      element: <Cart></Cart>,
+      loader: ()=>fetch('http://localhost:5000/beauties')
     }
     ]
   },
