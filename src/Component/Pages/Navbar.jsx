@@ -76,11 +76,11 @@ const Navbar = () => {
                     </ul>
                     {
                       user? <>
-                          <div className="flex flex-col lg:flex-col items-center justify-center gap-[0] lg:gap-[10px]">
+                          <div className="flex flex-col lg:flex-col items-center justify-center gap-[0] lg:gap-[5px]">
       <h1>{user.displayName}</h1>
       <img  src={user.photoURL} alt="" className="w-[30px] lg:w-[50px] h-[30px] lg:h-[50px] rounded-full " />
       </div>
-       <button onClick={handleLogOut} className="font-[500] bg-gradient-to-r from-slate-900 to-slate-700 py-[4px] rounded-md shadow-xl shadow-green-500/50 px-[10px]">Logout</button>
+       <button onClick={handleLogOut} className="text-[10px] font-[500] bg-gradient-to-r from-slate-900 to-slate-700 py-[4px] rounded-md shadow-xl shadow-green-500/50 px-[10px]">Logout</button>
                       </>
                       : <Link to='/login'>
                 <div className="navbar-end w-full ">

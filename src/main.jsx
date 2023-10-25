@@ -17,6 +17,7 @@ import Details from './Component/Pages/Details';
 import UpdateProduct from './Component/Pages/UpdateProduct';
 import Error from './Component/Pages/Error';
 import Cart from './Component/Pages/Cart';
+import PrivateRoute from './Component/Pages/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     },
     {
       path: '/addProduct',
-      element: <AddProduct></AddProduct>
+      element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
     },
     {
      path:'/login',
@@ -42,21 +43,21 @@ const router = createBrowserRouter([
     },
     {
       path:'/type/:brand',
-      element: <Categories></Categories>,
+      element: <PrivateRoute><Categories></Categories> </PrivateRoute>,
       loader: ()=>fetch('http://localhost:5000/beauties')
     },
     {
       path:'/details/:id',
-      element: <Details></Details>,
+      element: <PrivateRoute><Details></Details></PrivateRoute>,
       loader: ()=>fetch('http://localhost:5000/beauties')
     },
     {
       path:'/update',
-      element: <UpdateProduct></UpdateProduct>
+      element: <PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
     },
     {
       path:'/cart/:id',
-      element: <Cart></Cart>,
+      element: <PrivateRoute><Cart></Cart></PrivateRoute>,
       loader: ()=>fetch('http://localhost:5000/beauties')
     }
     ]
