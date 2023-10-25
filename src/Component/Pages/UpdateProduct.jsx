@@ -1,37 +1,63 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const UpdateProduct = () => {
 
-    const [image, setImage] = useState("");
-    const [name, setName] = useState("");
-    const [brand, setBrand] = useState("");
-    const [type, setType] = useState("");
-    const [price, setPrice] = useState("");
-    const [describe, setDescribe] = useState("");
-    const [rating, setRating] = useState('');
+    // const [image, setImage] = useState("");
+    // const [name, setName] = useState("");
+    // const [brand, setBrand] = useState("");
+    // const [type, setType] = useState("");
+    // const [price, setPrice] = useState("");
+    // const [describe, setDescribe] = useState("");
+    // const [rating, setRating] = useState('');
+    const UpdateNewProduct= useLoaderData();
+     const { id,
+        image,
+        name,
+        brand,
+        type,
+        price,
+        describe,
+        rating} = UpdateNewProduct
 
-    const reset = () => {
-        setImage("");
-        setName("");
-        setBrand("");
-        setType("");
-        setPrice("");
-        setDescribe("");
-        setRating("");
-    };
+
+    // const reset = () => {
+    //     setImage("");
+    //     setName("");
+    //     setBrand("");
+    //     setType("");
+    //     setPrice("");
+    //     setDescribe("");
+    //     setRating("");
+    // };
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        const product = {
-            image,
-            name,
-            brand,
-            type,
-            price,
-            describe,
-            rating
-        }
+        
+        
+        fetch(`http://localhost:5000/beauties/${id}`,{
+        method: 'PUT',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(UpdateProduct),
+    })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+          if(data?.acknowledged === true)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Great',
+                    text: 'Product updated successfully',
+                    
+                  })
+            //   reset();            
+            }
+        })
     }
     return (
         <div>
@@ -51,8 +77,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="image_url"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
+                                // value={image}
+                                // onChange={(e) => setImage(e.target.value)}
+                                defaultValue={image}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -65,8 +92,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter your name here"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                // value={name}
+                                // onChange={(e) => setName(e.target.value)}
+                                defaultValue={name}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -79,8 +107,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter brand name here "
-                                value={brand}
-                                onChange={(e) => setBrand(e.target.value)}
+                                // value={brand}
+                                // onChange={(e) => setBrand(e.target.value)}
+                                defaultValue={brand}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -92,8 +121,9 @@ const UpdateProduct = () => {
                                 name='type'
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="please enter your product type "
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
+                                // value={type}
+                                // onChange={(e) => setType(e.target.value)}
+                                defaultValue={type}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -105,8 +135,9 @@ const UpdateProduct = () => {
                                 name='price'
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter your sufficient amount"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
+                                // value={price}
+                                // onChange={(e) => setPrice(e.target.value)}
+                                defaultValue={price}
                             />
                         </div>
                         <div className=" h-20 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -119,8 +150,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter short description about your product"
-                                value={describe}
-                                onChange={(e) => setDescribe(e.target.value)}
+                                // value={describe}
+                                // onChange={(e) => setDescribe(e.target.value)}
+                                defaultValue={describe}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -133,8 +165,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="rating here"
-                                value={rating}
-                                onChange={(e) => setRating(e.target.value)}
+                                // value={rating}
+                                // onChange={(e) => setRating(e.target.value)}
+                                defaultValue={rating}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -144,7 +177,7 @@ const UpdateProduct = () => {
 
 
                                 className=" h-full w-full rounded-[7px]    px-3 py-2.5 font-sans text-sm  text-blue-gray-700 transition-all bg-[#b02085] shadow-xl shadow-[#b02085]/50 text-white font-[600] "
-                                value="ADD YOUR PRODUCT HERE"
+                                value="UPDATE YOUR PRODUCT"
                             />
                         </div>
 

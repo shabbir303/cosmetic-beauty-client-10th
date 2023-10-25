@@ -17,9 +17,9 @@ import Swal from "sweetalert2";
 const Categories = () => {
 
   const notAvailable = <>
-     <Link to ='/'>
-      <button className=" flex justify-center items-center mx-auto  h-full"><img src="https://i.ibb.co/z6wtySZ/back-to-home.png"  /> </button>
-     </Link>
+    <Link to='/'>
+      <button className=" flex justify-center items-center mx-auto  h-full"><img src="https://i.ibb.co/z6wtySZ/back-to-home.png" /> </button>
+    </Link>
   </>
 
   const [category, setCategory] = useState([]);
@@ -35,23 +35,23 @@ const Categories = () => {
     console.log(findCategory);
     setCategory(findCategory);
 
-    if(findCategory.length> 0){
-     return setCategory(findCategory);
+    if (findCategory.length > 0) {
+      return setCategory(findCategory);
     }
-    else{
-      
+    else {
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Products are not available',
       })
-      
-      return ;
+
+      return;
     }
   }
     , [brand, categories])
   console.log(category);
-  
+
   return (
     <>
       <div className="mt-[140px]">
@@ -107,11 +107,11 @@ const Categories = () => {
                 </p>
                 <div className="flex gap-4">
                   <Link to={`/details/${category._id}`}>
-                  <button className="  btn btn-outline btn-info" ><img src="https://i.ibb.co/1L5yx4h/details-removebg-preview.png" alt="" className="w-[80px] h-[20px]" /></button>
+                    <button className="  btn btn-outline btn-info" ><img src="https://i.ibb.co/1L5yx4h/details-removebg-preview.png" alt="" className="w-[80px] h-[20px]" /></button>
                   </Link>
-                  <Link to='/update'>
-                  <button className="btn btn-outline  btn-success"><img src="https://i.ibb.co/QfLqNkx/update.png" alt="" 
-                   className="w-[80px] h-[20px]"/> </button>
+                  <Link to={`/update/${category._id}`}>
+                    <button className="btn btn-outline  btn-success"><img src="https://i.ibb.co/QfLqNkx/update.png" alt=""
+                      className="w-[80px] h-[20px]" /> </button>
                   </Link>
                 </div>
               </div>
@@ -119,13 +119,13 @@ const Categories = () => {
           )
         }
       </div>
-       {
-         category? <div className="w-[300px] h-[100px] flex justify-center items-center mx-auto  ">
-         {notAvailable}
-         </div>: <div className="w-full h-full">
-       {notAvailable}
-       </div>
-       }
+      {
+        category ? <div className="w-[300px] h-[100px] flex justify-center items-center mx-auto  ">
+          {notAvailable}
+        </div> : <div className="w-full h-full">
+          {notAvailable}
+        </div>
+      }
     </>
   );
 };

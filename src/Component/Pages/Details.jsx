@@ -21,16 +21,29 @@ const Details = () => {
       const findDetails = details.find(eachDetail => eachDetail._id === id);
       console.log(findDetails);
       setDetail(findDetails);
+      
     },[details,id] )
     console.log(detail);
 
+    const cartData = {
+        _id:detail._id,
+        image:detail.image,
+        brand: detail.brand,
+        name: detail.name,
+        type:detail.type,
+        price:detail.price,
+        describe:detail.describe,
+        rating:detail.rating,
+        email:user?.email,
+        
+    }
     const handleCart =() =>{
         fetch('http://localhost:5000/cart',{
         method: 'POST',
         headers:{
           'content-type': 'application/json'
         },
-        body: JSON.stringify(detail),
+        body: JSON.stringify(cartData),
     })
         .then(res=>res.json())
         .then(data=>{
@@ -63,7 +76,7 @@ const Details = () => {
                     {/* <Rating value={detail.rating} style={{width:'50px',}} /> */}
                 <h1 className="text-[16px] text-[#808B96] font-[400] w-[300px] ">{detail.describe} </h1>
                 <h1 className="text-[30px] font-[600]">Price: <span className="text-pink-700  ">${detail.price}</span> </h1>
-                <Link to={`/cart/${detail._id}`}>
+                <Link to={`/cart`}>
                 <img onClick={handleCart} src="https://i.ibb.co/wh05W04/cart-removebg-preview.png" alt="" className="w-[300px]" />
                 </Link>
             </div>

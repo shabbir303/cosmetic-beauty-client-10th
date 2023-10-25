@@ -1,5 +1,6 @@
 import BrandProducts from "./BrandProducts";
 import Footer from "./Footer";
+import Mybrands from "./Mybrands";
 
 
 const Home = () => {
@@ -21,6 +22,10 @@ const Home = () => {
             
             <div className="mt-[50px] lg:mt-[200px]">
                 <BrandProducts></BrandProducts>
+            </div>
+
+            <div className="mt-[100px] ">
+                <Mybrands></Mybrands>
             </div>
             <div className="mt-[50px] bg-gradient-to-r from-cyan-500 to-blue-500 ">
                 <Footer></Footer>
