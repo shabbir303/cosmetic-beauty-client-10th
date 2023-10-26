@@ -26,7 +26,7 @@ const Details = () => {
     console.log(detail);
 
     const cartData = {
-        _id:detail._id,
+        // _id:detail._id,
         image:detail.image,
         brand: detail.brand,
         name: detail.name,
@@ -76,9 +76,9 @@ const Details = () => {
                     {/* <Rating value={detail.rating} style={{width:'50px',}} /> */}
                 <h1 className="text-[16px] text-[#808B96] font-[400] w-[300px] ">{detail.describe} </h1>
                 <h1 className="text-[30px] font-[600]">Price: <span className="text-pink-700  ">${detail.price}</span> </h1>
-                <Link to={`/cart`}>
+                {/* <Link to={`/cart`}> */}
                 <img onClick={handleCart} src="https://i.ibb.co/wh05W04/cart-removebg-preview.png" alt="" className="w-[300px]" />
-                </Link>
+                {/* </Link> */}
             </div>
             </div>
         </div>

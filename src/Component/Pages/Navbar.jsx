@@ -51,7 +51,7 @@ const Navbar = () => {
           background: isActive? "none": '',
         };
       }}
-    >Sports Blog</NavLink></li>
+    > Blog</NavLink></li>
     
   </>
 

@@ -1,48 +1,56 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 const UpdateProduct = () => {
 
-    // const [image, setImage] = useState("");
-    // const [name, setName] = useState("");
-    // const [brand, setBrand] = useState("");
-    // const [type, setType] = useState("");
-    // const [price, setPrice] = useState("");
-    // const [describe, setDescribe] = useState("");
-    // const [rating, setRating] = useState('');
     const UpdateNewProduct= useLoaderData();
-     const { id,
-        image,
-        name,
-        brand,
-        type,
-        price,
-        describe,
-        rating} = UpdateNewProduct
+    console.log(UpdateNewProduct);
+     const { 
+        image1,
+        name1,
+        brand1,
+        type1,
+        price1,
+        describe1,
+        rating1} = UpdateNewProduct;
+        console.log(UpdateNewProduct);
+
+    const [image, setImage] = useState(UpdateNewProduct?.image||'');
+    const [name, setName] = useState(UpdateNewProduct?.name ||'');
+    const [brand, setBrand] = useState(UpdateNewProduct?.brand ||'');
+    const [type, setType] = useState(UpdateNewProduct?.type ||'');
+    const [price, setPrice] = useState(UpdateNewProduct?.price||'');
+    const [describe, setDescribe] = useState(UpdateNewProduct?.describe||'');
+    const [rating, setRating] = useState(UpdateNewProduct?.rating||'');
+    const {id} =useParams();
+
+    
 
 
-    // const reset = () => {
-    //     setImage("");
-    //     setName("");
-    //     setBrand("");
-    //     setType("");
-    //     setPrice("");
-    //     setDescribe("");
-    //     setRating("");
-    // };
+    const reset = () => {
+        setImage("");
+        setName("");
+        setBrand("");
+        setType("");
+        setPrice("");
+        setDescribe("");
+        setRating("");
+    };
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        
+        const newProduct = {
+         image, name, brand, type, price, describe, rating
+        }
         
         fetch(`http://localhost:5000/beauties/${id}`,{
         method: 'PUT',
         headers:{
           'content-type': 'application/json'
         },
-        body: JSON.stringify(UpdateProduct),
+        body: JSON.stringify(newProduct),
     })
         .then(res=>res.json())
         .then(data=>{
@@ -54,9 +62,12 @@ const UpdateProduct = () => {
                     title: 'Great',
                     text: 'Product updated successfully',
                     
-                  })
-            //   reset();            
+                  }
+                 
+                  )
+            //    reset();          
             }
+        reset();
         })
     }
     return (
@@ -77,9 +88,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="image_url"
-                                // value={image}
-                                // onChange={(e) => setImage(e.target.value)}
-                                defaultValue={image}
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                defaultValue={image1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -92,9 +103,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter your name here"
-                                // value={name}
-                                // onChange={(e) => setName(e.target.value)}
-                                defaultValue={name}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                defaultValue={name1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -107,9 +118,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-[800px] rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter brand name here "
-                                // value={brand}
-                                // onChange={(e) => setBrand(e.target.value)}
-                                defaultValue={brand}
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                                defaultValue={brand1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -121,9 +132,9 @@ const UpdateProduct = () => {
                                 name='type'
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="please enter your product type "
-                                // value={type}
-                                // onChange={(e) => setType(e.target.value)}
-                                defaultValue={type}
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                                defaultValue={type1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -135,9 +146,9 @@ const UpdateProduct = () => {
                                 name='price'
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter your sufficient amount"
-                                // value={price}
-                                // onChange={(e) => setPrice(e.target.value)}
-                                defaultValue={price}
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                defaultValue={price1}
                             />
                         </div>
                         <div className=" h-20 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -150,9 +161,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="enter short description about your product"
-                                // value={describe}
-                                // onChange={(e) => setDescribe(e.target.value)}
-                                defaultValue={describe}
+                                value={describe}
+                                onChange={(e) => setDescribe(e.target.value)}
+                                defaultValue={describe1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">
@@ -165,9 +176,9 @@ const UpdateProduct = () => {
                                 required
                                 className=" h-full w-full rounded-[7px] border   px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 transition-all  "
                                 placeholder="rating here"
-                                // value={rating}
-                                // onChange={(e) => setRating(e.target.value)}
-                                defaultValue={rating}
+                                value={rating}
+                                onChange={(e) => setRating(e.target.value)}
+                                defaultValue={rating1}
                             />
                         </div>
                         <div className=" h-10 w-full min-w-[200px] flex justify-center items-center gap-[10px]">

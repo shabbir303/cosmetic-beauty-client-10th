@@ -56,7 +56,19 @@ const Register = () => {
       .then(result => {
         console.log(result.user);
         setRegSuccess(result.user)
-        toast.success("Registrations success")
+        // const user = { email};
+        // fetch("http://localhost:5000/user",{
+        //   method: 'POST',
+        //   headers:{
+        //     'content-type': 'application/json'
+        //   },
+        //   body: JSON.stringify(user)
+        // })
+        // .then(res=>res.json())
+        // .then(data=>{
+        //   console.log(data);
+        // })
+
         Swal.fire({
           position: 'top-end',
           icon: 'success',
