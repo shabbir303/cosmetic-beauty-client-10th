@@ -7,6 +7,11 @@ import { useState } from "react";
 const Cart = () => {
     const { user } = useContext(Authcontext);
 
+
+    const handleDelete =()=>{
+         
+    }
+
     const [carts, setCarts] = useState([])
     console.log(user);
     useEffect(() => {
@@ -28,7 +33,7 @@ const Cart = () => {
                    <h1>{everyUser.brand} </h1>
                     <h1 className="text-orange-600 ">{everyUser.type} </h1>
                    </div>
-                   <button className="flex btn bg-red-300  p-[10px]">X</button>
+                   <button onClick={handleDelete} className="flex btn bg-red-300  p-[10px]">X</button>
                  </div>)
             }
         </div>
