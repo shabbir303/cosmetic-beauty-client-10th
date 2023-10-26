@@ -1,6 +1,7 @@
 import BrandProducts from "./BrandProducts";
 import Footer from "./Footer";
 import Mybrands from "./Mybrands";
+import NewArrivals from "./NewArrivals";
 
 
 const Home = () => {
@@ -24,9 +25,14 @@ const Home = () => {
                 <BrandProducts></BrandProducts>
             </div>
 
-            <div className="mt-[100px] ">
+            <div className="mt-[200px] ">
                 <Mybrands></Mybrands>
             </div>
+            <div className="my-[150px]" >
+                <NewArrivals></NewArrivals>
+            </div>
+
+
             <div className="mt-[50px] bg-gradient-to-r from-cyan-500 to-blue-500 ">
                 <Footer></Footer>
             </div>
