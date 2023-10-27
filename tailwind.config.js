@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+// @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -9,7 +10,11 @@ export default {
     themes: ["light"],
   },
 
-    extend: {},
+    extend: {
+      fontFamily:{
+        poiretOne:['Poiret One']
+      },
+    },
   
   plugins: [require("daisyui")],
 }

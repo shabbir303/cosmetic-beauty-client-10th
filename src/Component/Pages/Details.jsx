@@ -38,7 +38,7 @@ const Details = () => {
         
     }
     const handleCart =() =>{
-        fetch('http://localhost:5000/cart',{
+        fetch('https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/cart',{
         method: 'POST',
         headers:{
           'content-type': 'application/json'

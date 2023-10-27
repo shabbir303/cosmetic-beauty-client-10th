@@ -15,7 +15,7 @@ const Cart = () => {
     const [carts, setCarts] = useState([])
     console.log(user);
     useEffect(() => {
-        fetch(`http://localhost:5000/cart?email=${user?.email}`)
+        fetch(`https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/cart?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

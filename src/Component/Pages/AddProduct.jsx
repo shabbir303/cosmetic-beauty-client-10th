@@ -33,7 +33,7 @@ const AddProduct = () => {
             rating
         }
         
-        fetch('http://localhost:5000/beauties',{
+        fetch('https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties',{
         method: 'POST',
         headers:{
           'content-type': 'application/json'

@@ -45,7 +45,7 @@ const UpdateProduct = () => {
          image, name, brand, type, price, describe, rating
         }
         
-        fetch(`http://localhost:5000/beauties/${id}`,{
+        fetch(`https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties/${id}`,{
         method: 'PUT',
         headers:{
           'content-type': 'application/json'

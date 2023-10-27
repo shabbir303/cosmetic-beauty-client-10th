@@ -44,22 +44,22 @@ const router = createBrowserRouter([
     {
       path:'/type/:brand',
       element: <PrivateRoute><Categories></Categories> </PrivateRoute>,
-      loader: ()=>fetch('http://localhost:5000/beauties')
+      loader: ()=>fetch('https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties')
     },
     {
       path:'/details/:id',
       element: <PrivateRoute><Details></Details></PrivateRoute>,
-      loader: ()=>fetch('http://localhost:5000/beauties')
+      loader: ()=>fetch('https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties')
     },
     {
       path:'/update/:id',
       element: <PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
-      loader: ({params})=>fetch(`http://localhost:5000/beauties/${params.id}`)
+      loader: ({params})=>fetch(`https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties/${params.id}`)
     },
     {
       path:'/cart',
       element: <PrivateRoute><Cart></Cart></PrivateRoute>,
-      loader: ()=>fetch('http://localhost:5000/beauties')
+      loader: ()=>fetch('https://cosmetics-nzuk41a41-shabbir-hossain-s-projects.vercel.app/beauties')
     }
     ]
   },
